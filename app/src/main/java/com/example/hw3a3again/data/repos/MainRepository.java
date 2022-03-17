@@ -25,7 +25,6 @@ public class MainRepository {
             @Override
             public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Log.e("f_global", "success");
                     liveData.setValue(response.body());
                 }
             }
