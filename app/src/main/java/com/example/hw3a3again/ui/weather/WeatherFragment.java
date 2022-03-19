@@ -24,6 +24,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class WeatherFragment extends Fragment {
 
     private FragmentWeatherBinding binding;

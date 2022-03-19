@@ -8,6 +8,8 @@ import com.example.hw3a3again.common.Resource;
 import com.example.hw3a3again.data.models.MainResponse;
 import com.example.hw3a3again.data.remote.WeatherApi;
 
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,6 +18,7 @@ public class MainRepository {
 
     private WeatherApi api;
 
+    @Inject
     public MainRepository(WeatherApi api) {
         this.api = api;
     }

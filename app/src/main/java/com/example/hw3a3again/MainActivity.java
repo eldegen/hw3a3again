@@ -8,6 +8,9 @@ import android.view.WindowManager;
 
 import com.example.hw3a3again.databinding.ActivityMainBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
