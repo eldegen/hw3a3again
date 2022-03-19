@@ -2,4 +2,12 @@
     <string name="app_name">hw3a3again</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="temp_blank">0°С</string>
+    <string name="feels_like_blank">Feels like: 0°С</string>
+    <string name="humidity_blank">Humidity: 0%</string>
+    <string name="wind_speed_blank">Wind speed: 0</string>
+    <string name="country_blank">Country: N/A</string>
+    <string name="coordinates">Coordinates</string>
+    <string name="longitude_blank">Longitude: N/A</string>
+    <string name="latitude_blank">Latitude: N/A</string>
 </resources>
