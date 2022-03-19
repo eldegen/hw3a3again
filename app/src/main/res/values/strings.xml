@@ -10,4 +10,15 @@
     <string name="coordinates">Coordinates</string>
     <string name="longitude_blank">Longitude: N/A</string>
     <string name="latitude_blank">Latitude: N/A</string>
+    <string name="bishkek_kg">Bishkek, KG</string>
+    <string name="date_time_blank">01.01.2077 | 21:00</string>
+    <string name="c_text">°C</string>
+    <string name="just_zero">0</string>
+    <string name="n_a">N/A</string>
+    <string name="feels_blank">Feels:</string>
+    <string name="new_humidity_blank">0%</string>
+    <string name="humidity_text">Humidity</string>
+    <string name="new_wind_speed_blank">0m/s</string>
+    <string name="wind_text">Wind</string>
+    <string name="pressure_text">Pressure</string>
 </resources>

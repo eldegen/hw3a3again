@@ -26,7 +26,7 @@ public class Resource<T> {
         return new Resource<>(Status.LOADING,null,null);
     }
 
-    protected enum Status {
+    public enum Status {
         SUCCESS,
         ERROR,
         LOADING

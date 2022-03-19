@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.hw3a3again.App;
 import com.example.hw3a3again.R;
+import com.example.hw3a3again.common.Resource;
 import com.example.hw3a3again.data.models.MainResponse;
 import com.example.hw3a3again.databinding.FragmentWeatherBinding;
 
@@ -51,22 +52,32 @@ public class WeatherFragment extends Fragment {
 
         viewModel = new ViewModelProvider(requireActivity()).get(WeatherViewModel.class);
         viewModel.getWeather(city, apikey);
-        viewModel.weatherLiveData.observe(getViewLifecycleOwner(), new Observer<MainResponse>() {
+        viewModel.weatherLiveData.observe(getViewLifecycleOwner(), new Observer<Resource<MainResponse>>() {
             @SuppressLint("SetTextI18n")
             @Override
-            public void onChanged(MainResponse mainResponse) {
-                Log.e("f_global", "WeatherFragment: Success!");
+            public void onChanged(Resource<MainResponse> mainResponse) {
+                switch (mainResponse.status) {
+                    case LOADING: {
+                        break;
+                    }
+                    case SUCCESS: {
+                        Log.e("f_global", "WeatherFragment: Success!");
 
-                double tempBuffer = mainResponse.getMain().getTemp() - 273.15;
-                double tempFeelsBuffer = mainResponse.getMain().getFeelsLike() - 273.15;
+                        double tempBuffer = mainResponse.data.getMain().getTemp() - 273.15;
+                        double tempFeelsBuffer = mainResponse.data.getMain().getFeelsLike() - 273.15;
 
-                binding.tvTemp.setText(round(tempBuffer, 1) + "°C");
-                binding.tvFeelsTemp.setText("Feels like: " + round(tempFeelsBuffer, 1) + "°C");
-                binding.tvCountry.setText("Country: " + mainResponse.getSys().getCountry());
-                binding.tvHumidity.setText("Humidity: " + mainResponse.getMain().getHumidity().toString() + "%");
-                binding.tvWindSpeed.setText("Wind speed: " + mainResponse.getWind().getSpeed().toString() + "m/s");
-                binding.tvLongitude.setText("Longitude: " + mainResponse.getCoord().getLon().toString());
-                binding.tvLatitude.setText("Latitude: " + mainResponse.getCoord().getLat().toString());
+                        binding.tvWeatherType.setText(mainResponse.data.getWeather().get(0).getMain());
+                        binding.tvTemp.setText(round(tempBuffer, 1) + "");
+                        binding.tvFeels.setText(round(tempFeelsBuffer, 1) + "");
+                        binding.tvHumidity.setText(mainResponse.data.getMain().getHumidity().toString() + "%");
+                        binding.tvWind.setText(mainResponse.data.getWind().getSpeed().toString() + "m/s");
+
+                        break;
+                    }
+                    case ERROR: {
+                        break;
+                    }
+                }
             }
         });
         

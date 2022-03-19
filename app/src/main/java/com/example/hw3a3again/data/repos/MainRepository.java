@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.hw3a3again.common.Resource;
 import com.example.hw3a3again.data.models.MainResponse;
 import com.example.hw3a3again.data.remote.WeatherApi;
 
@@ -19,19 +20,22 @@ public class MainRepository {
         this.api = api;
     }
 
-    public MutableLiveData<MainResponse> getWeather(String city, String apikey) {
-        MutableLiveData<MainResponse> liveData = new MutableLiveData<>();
+    public MutableLiveData<Resource<MainResponse>> getWeather(String city, String apikey) {
+        MutableLiveData<Resource<MainResponse>> liveData = new MutableLiveData<>();
+        liveData.setValue(Resource.loading());
         api.getWeather(city, apikey).enqueue(new Callback<MainResponse>() {
             @Override
             public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    liveData.setValue(response.body());
+                    liveData.setValue(Resource.success(response.body()));
+                } else {
+                    liveData.setValue(Resource.error(response.message(), null));
                 }
             }
 
             @Override
             public void onFailure(Call<MainResponse> call, Throwable t) {
-
+                liveData.setValue(Resource.error(t.getLocalizedMessage(), null));
             }
         });
 
