@@ -160,7 +160,7 @@
 
                     <TextView
                         android:id="@+id/tv_pressure"
-                        android:text="@string/new_humidity_blank"
+                        android:text="@string/just_zero"
                         android:layout_gravity="center"
                         android:textSize="16sp"
                         android:textColor="@color/black"

@@ -100,6 +100,7 @@ public class WeatherFragment extends Fragment {
                         binding.tvFeels.setText(round(tempFeelsBuffer, 1) + "");
                         binding.tvHumidity.setText(mainResponse.data.getMain().getHumidity().toString() + "%");
                         binding.tvWind.setText(mainResponse.data.getWind().getSpeed().toString() + "m/s");
+                        binding.tvPressure.setText(mainResponse.data.getMain().getPressure().toString());
 
                         break;
                     }
@@ -112,23 +113,6 @@ public class WeatherFragment extends Fragment {
             }
         });
 
-        viewModel.forecastLiveData.observe(getViewLifecycleOwner(), new Observer<Resource<ForecastMainResponse>>() {
-            @Override
-            public void onChanged(Resource<ForecastMainResponse> forecastMainResponse) {
-                switch (forecastMainResponse.status) {
-                    case LOADING: {
-                        break;
-                    }
-                    case SUCCESS: {
-
-                        break;
-                    }
-                    case ERROR: {
-                        break;
-                    }
-                }
-            }
-        });
 
         binding.ivRectangle.setOnClickListener(new View.OnClickListener() {
             @Override
