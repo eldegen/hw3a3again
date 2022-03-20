@@ -82,11 +82,13 @@ public class WeatherFragment extends Fragment {
             public void onChanged(Resource<MainResponse> mainResponse) {
                 switch (mainResponse.status) {
                     case LOADING: {
-                        Toast.makeText(getContext(), "Loading", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(view, "Loading...", Snackbar.LENGTH_LONG)
+                                .show();
                         break;
                     }
                     case SUCCESS: {
-                        Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(view, "Success", Snackbar.LENGTH_LONG)
+                                .show();
                         Log.e("f_global", "WeatherFragment: Success!");
 
                         binding.tvDateTime.setText(dateText + " | " + timeText);
