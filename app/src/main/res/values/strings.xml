@@ -21,4 +21,6 @@
     <string name="new_wind_speed_blank">0m/s</string>
     <string name="wind_text">Wind</string>
     <string name="pressure_text">Pressure</string>
+    <string name="search_text">Search</string>
+    <string name="city_hint">City</string>
 </resources>
