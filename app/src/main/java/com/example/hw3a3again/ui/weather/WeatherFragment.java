@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.hw3a3again.App;
 import com.example.hw3a3again.R;
@@ -22,7 +23,13 @@ import com.example.hw3a3again.databinding.FragmentWeatherBinding;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -53,6 +60,12 @@ public class WeatherFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         DecimalFormat df = new DecimalFormat("###.###");
 
+        Date currentDate = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+        String dateText = dateFormat.format(currentDate);
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        String timeText = timeFormat.format(currentDate);
+
         viewModel = new ViewModelProvider(requireActivity()).get(WeatherViewModel.class);
         viewModel.getWeather(city, apikey);
         viewModel.weatherLiveData.observe(getViewLifecycleOwner(), new Observer<Resource<MainResponse>>() {
@@ -61,10 +74,14 @@ public class WeatherFragment extends Fragment {
             public void onChanged(Resource<MainResponse> mainResponse) {
                 switch (mainResponse.status) {
                     case LOADING: {
+                        Toast.makeText(getContext(), "Loading", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case SUCCESS: {
+                        Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
                         Log.e("f_global", "WeatherFragment: Success!");
+
+                        binding.tvDateTime.setText(dateText + " | " + timeText);
 
                         double tempBuffer = mainResponse.data.getMain().getTemp() - 273.15;
                         double tempFeelsBuffer = mainResponse.data.getMain().getFeelsLike() - 273.15;
@@ -78,6 +95,7 @@ public class WeatherFragment extends Fragment {
                         break;
                     }
                     case ERROR: {
+                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
                         break;
                     }
                 }
