@@ -95,6 +95,7 @@ public class WeatherFragment extends Fragment {
                         double tempBuffer = mainResponse.data.getMain().getTemp() - 273.15;
                         double tempFeelsBuffer = mainResponse.data.getMain().getFeelsLike() - 273.15;
 
+                        binding.tvFullCountry.setText(mainResponse.data.getName() + ", " + mainResponse.data.getSys().getCountry());
                         binding.tvWeatherType.setText(mainResponse.data.getWeather().get(0).getMain());
                         binding.tvTemp.setText(round(tempBuffer, 1) + "");
                         binding.tvFeels.setText(round(tempFeelsBuffer, 1) + "");

@@ -43,6 +43,8 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
                 String cityBuffer = binding.editText.getText().toString();
                 controller.navigate(MenuFragmentDirections.actionMenuFragmentToWeatherFragment2().setCityName(cityBuffer));
+
+
             }
         });
     }

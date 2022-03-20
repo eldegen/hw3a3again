@@ -23,4 +23,5 @@
     <string name="pressure_text">Pressure</string>
     <string name="search_text">Search</string>
     <string name="city_hint">City</string>
+    <string name="city_country_blank">City, Country</string>
 </resources>
