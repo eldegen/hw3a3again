@@ -1,5 +1,5 @@
 
-package com.example.hw3a3again.data.models;
+package com.example.hw3a3again.data.models.weather;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

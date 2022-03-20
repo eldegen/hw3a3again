@@ -1,5 +1,5 @@
 
-package com.example.hw3a3again.data.models;
+package com.example.hw3a3again.data.models.weather;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

@@ -1,6 +1,7 @@
 package com.example.hw3a3again.data.remote;
 
-import com.example.hw3a3again.data.models.MainResponse;
+import com.example.hw3a3again.data.models.forecast.ForecastMainResponse;
+import com.example.hw3a3again.data.models.weather.MainResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -13,4 +14,12 @@ public interface WeatherApi {
             @Query("q") String city,
             @Query("appid") String apikey
     );
+
+    @GET("forecast")
+    Call<ForecastMainResponse> getForecast(
+            @Query("lat") double lat,
+            @Query("lon") double lon,
+            @Query("appid") String apikey
+    );
+
 }

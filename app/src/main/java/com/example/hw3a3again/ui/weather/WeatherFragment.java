@@ -19,7 +19,8 @@ import android.widget.Toast;
 
 import com.example.hw3a3again.R;
 import com.example.hw3a3again.common.Resource;
-import com.example.hw3a3again.data.models.MainResponse;
+import com.example.hw3a3again.data.models.forecast.ForecastMainResponse;
+import com.example.hw3a3again.data.models.weather.MainResponse;
 import com.example.hw3a3again.databinding.FragmentWeatherBinding;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -30,8 +31,6 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -107,6 +106,24 @@ public class WeatherFragment extends Fragment {
                     case ERROR: {
                         Snackbar.make(view, "Failed to load data! (" + mainResponse.msg + ")", Snackbar.LENGTH_LONG)
                                 .show();
+                        break;
+                    }
+                }
+            }
+        });
+
+        viewModel.forecastLiveData.observe(getViewLifecycleOwner(), new Observer<Resource<ForecastMainResponse>>() {
+            @Override
+            public void onChanged(Resource<ForecastMainResponse> forecastMainResponse) {
+                switch (forecastMainResponse.status) {
+                    case LOADING: {
+                        break;
+                    }
+                    case SUCCESS: {
+
+                        break;
+                    }
+                    case ERROR: {
                         break;
                     }
                 }
